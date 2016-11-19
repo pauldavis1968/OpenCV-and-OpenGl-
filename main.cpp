@@ -75,7 +75,7 @@ void calcFPS(GLFWwindow* window, uint & frame, double & t0, double & time)
 	{
 		double fps = (double)frame / (time - t0);
 
-		string windowTitle = "Webcam OpenCV and OpenGL Manipulation  CESARS| FPS: ";
+		string windowTitle = "Webcam OpenCV and OpenGL Manipulation  | FPS: ";
 
 		string tempFPS = toString(fps);
 
@@ -149,7 +149,7 @@ int main(int argc, char **argv)
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	//create a GLFW windows object
-	g_window = glfwCreateWindow(WINDOWS_WIDTH, (WINDOWS_HEIGHT), "CESARS - Texture Mapping Demo", NULL, NULL);
+	g_window = glfwCreateWindow(WINDOWS_WIDTH, (WINDOWS_HEIGHT), "Texture Mapping Demo", NULL, NULL);
 	if(!g_window){
 		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
 		glfwTerminate();
