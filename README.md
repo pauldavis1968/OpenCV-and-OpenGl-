@@ -1,6 +1,8 @@
 # OpenCV-and-OpenGl-
-Video using Opengl
+Video Example with 2 videos in context
 ![alt tag](http://imgur.com/UxExAL7.jpg)
+Video Example with 3 videos in context
 ![alt tag](http://imgur.com/iPOCtx7.jpg)
+Current screenshot of current program
 ![alt tag](http://imgur.com/XmZOTln.jpg)
 
