@@ -21,7 +21,7 @@ glm::mat4 getProjectionMatrix(){
 
 
 //initial position of the camera
-glm::vec3 g_position = glm::vec3( 0, 0, 2 );
+glm::vec3 g_position = glm::vec3( 0, 0, 1 );
 const float speed = 3.0f; // 3 units / second
 float g_initial_fov = glm::pi<float>()*0.4f;
 
