@@ -10,7 +10,7 @@ Video Example with 2 videos in context
 Current screenshot of current program
 ![alt tag](http://imgur.com/XmZOTln.jpg)
 
-This shows 2 problems 
+This shows 2 problems (Also in capture the word pain was supposed to be paint)
 
 1 Bottom viedo is part of the the top video
 
