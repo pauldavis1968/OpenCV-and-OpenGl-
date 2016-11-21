@@ -188,7 +188,22 @@ int main(int argc, char **argv)
 
 	//Handle video input with OpenCV
 	VideoCapture cap(0); // open the default camera
+	VideoCapture cap2(0);
 	Mat frame;
+	cv::Mat temp;
+	if(theFrame_1.type() == CV_8UC1) {
+                     cv::Mat temp;
+                     theFrame_1.convertTo(temp,CV_8UC3);
+                     cvtColor(theFrame_1,temp,CV_GRAY2BGR);
+                     temp2.copyTo(theFrame_1);
+	}
+
+       if(theFrame_2.type() == CV_8UC1) {
+                    cv::Mat temp;
+                    theFrame_2.convertTo(temp,CV_8UC3);
+                    cvtColor(theFrame_2,temp,CV_GRAY2BGR);
+                    temp.copyTo(theFrame_2);
+       }	
 	if (!cap.isOpened()){  // check if we succeeded
 		printf("Cannot open files\n");
 		glfwTerminate();
@@ -197,10 +212,11 @@ int main(int argc, char **argv)
 		cap >> frame; // get a new frame from the camera
 		printf("Got Video, %d x %d\n",frame.size().width, frame.size().height);
 	}
-
+        // This is reality is second camera who size will not be the same as frame
 	cv::Mat theFrame = cv::Mat(frame.size().height, frame.size().width, CV_8UC3, cv::Scalar(0, 255.0));
 
 	cap >> frame; // get a new frame from the camera
+	//cap2 >> theFrame;
 
 	GLuint texture_id = initializeTexture(frame.data, frame.size().width, frame.size().height, GL_BGR);
 	aspect_ratio = (float)frame.size().width/(float)frame.size().height;
@@ -279,20 +295,30 @@ int main(int argc, char **argv)
 		glUniformMatrix4fv(matrix_id, 1, GL_FALSE, &mvp[0][0]);
 
 		cap >> frame; // get a new frame from camera
+		cap2 >> theFrame;
+		
+		 if(theFrame_1.type() == CV_8UC1) {
+                     cv::Mat temp2;
+                     theFrame_1.convertTo(temp2,CV_8UC3);
+                     cvtColor(theFrame_1,temp2,CV_GRAY2BGR);
+                     temp2.copyTo(theFrame_1);
+		 }
+
+                 if(theFrame_2.type() == CV_8UC1) {
+                    cv::Mat temp3;
+                    theFrame_2.convertTo(temp3,CV_8UC3);
+                    cvtColor(theFrame_2,temp3,CV_GRAY2BGR);
+                    temp.copyTo(theFrame_2);
+                 }
 		//update the texture with the new frame
 		updateTexture(frame.data, frame.size().width, frame.size().height, GL_BGR);
 
-	//	glViewport(0, 0, sw2, sh2);
-	//	glDrawArrays(GL_TRIANGLES, 0, 6); //draw the square
-		glDrawArrays(GL_TRIANGLES, 0, 6); //draw the square
-	//	glViewport(sw2, sh2, sw2, sh2);
-	//	updateTexture(theFrame.data, theFrame.size().width, theFrame.size().height, GL_BGR);
-	//	glViewport(sw2, 0, sw2, sh2);
-	//	glDrawArrays(GL_TRIANGLES, 0, 6); //draw the square
-	//	glViewport(0, sh2, sw2, sh2);
-	//	glDrawArrays(GL_TRIANGLES, 0, 6); //draw the square
-	//	glViewport(sw2, sh2, sw2, sh2);
-	//	glDrawArrays(GL_TRIANGLES, 0, 6); //draw the square
+                 updateTexture(theFrame_1.data, theFrame_1.size().width, theFrame_1.size().height, GL_BGR);
+                 glViewport(0, (GLsizei)WINDOWS_HEIGHT/2, (GLsizei)WINDOWS_WIDTH/2, (GLsizei)WINDOWS_HEIGHT/2);
+                 glDrawArrays(GL_TRIANGLES, 0, 6); //draw the square
+                 updateTexture(theFrame_2.data, theFrame_2.size().width, theFrame_2.size().height, GL_BGR);
+                 glViewport(0,0, (GLsizei)WINDOWS_WIDTH/2, (GLsizei)WINDOWS_HEIGHT/2);
+                 glDrawArrays(GL_TRIANGLES, 0, 6); //draw the square
 
 		//swap buffers
 		glfwSwapBuffers(g_window);
