@@ -14,6 +14,6 @@ This shows 2 problems
 
 1 Bottom viedo is part of the the top video
 
-2 I need to be able to resize to git whole screen context (GLFW window)
+2 I need to be able to resize to have videos like above if needed whole screen context (GLFW window)
 
 ![alt tag](http://i.imgur.com/EDuEadm.png)
